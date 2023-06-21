@@ -24,4 +24,5 @@ urlpatterns = [
     path('', homepage),
     path('about/', about),
     path('contacts/', contact_view),
+    path('vacancies', vacancy_list),
 ]

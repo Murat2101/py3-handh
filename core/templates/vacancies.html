@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Вакансия</h1>
+    {% for v in vacancies %}
+        <div>{{ v.title }} - {{ v.salary }}</div>
+    {% endfor %}
+</body>
+</html>
