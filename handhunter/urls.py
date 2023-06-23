@@ -25,4 +25,5 @@ urlpatterns = [
     path('about/', about),
     path('contacts/', contact_view),
     path('vacancies', vacancy_list),
+    path('companies', company_list),
 ]
