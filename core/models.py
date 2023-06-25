@@ -1,5 +1,5 @@
 from django.db import models
-
+from worker.models import Worker, User
 
 class Vacancy(models.Model):
     title = models.CharField(max_length=255, verbose_name='Вакансия')
@@ -8,6 +8,14 @@ class Vacancy(models.Model):
     is_relevant = models.BinaryField(default=True, verbose_name='Актуальность')
     email = models.EmailField(verbose_name='Электронная почта')
     contacts = models.CharField(max_length=100, verbose_name='Контакты')
+    viewed_by = models.ManyToManyField(
+        to=User,
+        blank=True,
+    )
+    candidat = models.ManyToManyField(
+        to=Worker,
+        blank=True,
+    )
     def __str__(self):
         return self.title
 

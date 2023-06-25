@@ -7,7 +7,9 @@
 <body>
     <h1>Работники</h1>
         {% for w in workers %}
-        <div>{{ w.name_w }} - {{ w.specialization }}</div>
+            <div>
+                {{ w.name_w }} - {{ w.specialization }}
+            </div>
         {% endfor %}
 </body>
 </html>
