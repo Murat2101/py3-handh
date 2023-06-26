@@ -15,7 +15,7 @@ def worker_info(request, id):
     return render(request, 'worker.html', context)
 
 def Resume(request):
-    vac_n = Vacancy.objects.get(pk=1)
-    usr_n = User.objects.get(username='user')
-    vac_n.viewed_by.add(usr_n)
+    vac_n = Vacancy.objects.get(id=id)
+    context = {'vacancy': vac_n}
+    return render(request, 'resume.html', context)
 
