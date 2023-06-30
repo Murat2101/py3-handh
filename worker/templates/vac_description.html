@@ -1,0 +1,17 @@
+{% extends 'basa.html' %}
+{% block content %}
+
+    <h1>Описание вакансии</h1>
+    <h2>{{ vacancy.title }}</h2>
+    <p>{{ vacancy.description }}</p>
+
+    <h2>Кандидаты</h2>
+    <ul>
+        {% for candidate in candidates %}
+        <li>{{ candidate.name }}</li>
+    {% empty %}
+        <li>Нет кандитатов</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

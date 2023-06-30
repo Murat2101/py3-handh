@@ -7,11 +7,20 @@
 <body>
     <h1>Информация о сотруднике</h1>
     <ul>
-        <ol>Login {{ worker.user.username }}</ol>
-        <ol>Имя: {{ worker.name_w }}</ol>
+        <ol>Login: {{ worker.user.username }}</ol>
+        <ol>Имя: {{ worker.name }}</ol>
         <ol>Специализация: {{ worker.specialization }}</ol>
-        <OL>Ожидаемая зарплата: {{ worker.w_salary }}</OL>
-        <ol>Открыт для предложения: {{ worker.is_searching }}</ol>
+        <ol>Ожидаемая зарплата: {{ worker.waiting_salary }}</ol>
+        <ol>Открыт для предложений: {{ worker.is_searching }}</ol>
     </ul>
+
+    <h2>Интересующие вакансии:</h2>
+    {% for v in worker.vacancy_set.all  %}
+        <div>{{ v.title }}</div>
+    {% endfor %}
+    <hr>
+    {% for v in vacancies %}
+        <div>{{ v.title }}</div>
+    {% endfor %}
 </body>
 </html>
