@@ -42,9 +42,42 @@ def vac_description(request, id):
     vacancy_object = Vacancy.objects.get(id=id)
     candidates = vacancy_object.candidates.all()
     context = {
-        'vacancy':vacancy_object,
-        'candidates':candidates,
+        'vacancy': vacancy_object,
+        'candidates': candidates,
     }
     return render(request, 'vac_description.html', context)
+
+
+def add_resume(request):
+    template = 'resume/resume_add.html'
+    if request.method == "GET":
+        # показать форму
+        return render(request, template)
+    elif request.method == "POST":
+        # записать резюме в БД
+        new_resume = Resume()
+        new_resume.worker = request.user.worker
+        new_resume.title = request.POST["form-title"]
+        new_resume.text = request.POST["form-text"]
+        new_resume.save()
+        return HttpResponse("Запись добавлена!")
+
+def resume_edit(request, id):
+    resume = Resume.objects.get(id=id)
+    if request.method == 'POST':
+        resume.title = request.POST["title"]
+        resume.salary = int(request.POST["salary"])
+        resume.description = request.POST["description"]
+        resume.email = request.POST["email"]
+        resume.contacts = request.POST["contacts"]
+        resume.save()
+        return redirect(f'/resume/{resume.id}/')
+    return render(
+        request, 'resume/resume_edit_from.html',
+        {"resume": resume}
+    )
+
+
+
 
 

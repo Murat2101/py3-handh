@@ -12,16 +12,39 @@
     <nav>
         <a href="/">Домой</a> |
         <a href="/vacancies">Вакансии</a> |
+        <a href="/add-vacancy">Добавить вакансию</a> |
         <a href="/workers">Кандидаты</a> |
         <a href="/resume-list">Резюме</a> |
-        <a href="{% url 'my-resume' %}">Мои Резюме</a> |
+
+
+
         <a href="/about">АНАНАС!</a> |
+
+
         {% if request.user.is_authenticated %}
-            Привет, {{ request.user.username }}!
+        <a href="{% url 'my-resume' %}">Мои Резюме</a> |
+        <a href="{% url 'add-resume' %}">Добавить Резюме</a> |
+        Привет, {{ request.user.username }}!
         {% else %}
+
+
             Пожалуйста, авторизуйтесь
         {% endif %}
+    <nav>
+    <div>
+        <br>
+        <form method="GET" action="/search">
+            <input
+                    type="text"
+                    >
+
+        </form>
+    </div>
     </nav>
+            <input type="text">
+            <button>Поиск</button>
+
+
     {% block content %}
     {% endblock %}
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>

@@ -6,8 +6,13 @@
 
 {% block content %}
     <h1>Вакансия</h1>
+    <nav>
+        <a href="/vac_description">Детальное описание</a>
+
+    </nav>
     {% for v in vacancies %}
         <div>{{ v.title }} - {{ v.salary }}</div>
     {% endfor %}
 
 {% endblock %}
+

@@ -4,6 +4,7 @@
 
     {% for r in resumes %}
         <div><a href="/resume-info/{{ r.id }}">{{ r.title }}</a></div>
+        <a href="/resume-edit">Добавить резюме</a>
     {% endfor %}
 
 {% endblock %}
