@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse
 from worker.models import Worker, Resume
-from core.models import *
-# Create your views here.
+from .forms import ResumeEditForm
+
 
 def workers(request):
     workers = Worker.objects.all()
@@ -22,6 +22,7 @@ def resume_list(request):
     )
 
 
+
 def resume_info(request, id):
     resume_object = Resume.objects.get(id=id)
     return render(
@@ -30,13 +31,37 @@ def resume_info(request, id):
     )
 
 
+def resume_edit(request, id):
+    resume_object = Resume.objects.get(id=id)
+
+    if request.method == "GET":
+        form = ResumeEditForm(instance=resume_object)
+        return render(request, "resume/resume_edit.html", {"form": form})
+
+    elif request.method == "POST":
+        form = ResumeEditForm(
+            data=request.POST,
+            instance=resume_object,
+            files=request.FILES
+        )
+        if form.is_valid():
+            obj = form.save()
+            return redirect(resume_info, id=obj.id)
+        else:
+            return HttpResponse("Форма не валидна")
+
+
+
 def my_resume(request):
-    resume_query = Resume.objects.filter(worker=request.user.worker)
-    # resume_query = request.user.worker.resume.all()
-    return render(
-        request, 'resume/resume_list.html',
-        {"resumes": resume_query}
-    )
+    if request.user.is_authenticated:
+        resume_query = Resume.objects.filter(worker=request.user.worker)
+        # resume_query = request.user.worker.resume.all()
+        return render(
+            request, 'resume/resume_list.html',
+            {"resumes": resume_query}
+        )
+    else:
+        return redirect('home')
 
 def vac_description(request, id):
     vacancy_object = Vacancy.objects.get(id=id)
@@ -62,20 +87,20 @@ def add_resume(request):
         new_resume.save()
         return HttpResponse("Запись добавлена!")
 
-def resume_edit(request, id):
-    resume = Resume.objects.get(id=id)
+
+def create_resume(request):
     if request.method == 'POST':
-        resume.title = request.POST["title"]
-        resume.salary = int(request.POST["salary"])
-        resume.description = request.POST["description"]
-        resume.email = request.POST["email"]
-        resume.contacts = request.POST["contacts"]
-        resume.save()
-        return redirect(f'/resume/{resume.id}/')
-    return render(
-        request, 'resume/resume_edit_from.html',
-        {"resume": resume}
-    )
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('resume')
+        else:
+            form = ResumeAddForm()
+            return render(request,
+                          'create_resume.html',
+                          {'form': form}
+            )
+
 
 
 

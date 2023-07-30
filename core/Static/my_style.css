@@ -1,0 +1,26 @@
+h1 {
+    color:#016878;
+}
+
+h2 {
+    color:#016878;
+}
+
+
+.homepage {
+    background:
+            linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)),
+            url("bpn.jpeg")
+            center / cover;
+    padding: 10px;
+    height: 80vh;
+    color: #0c2a47;
+}
+
+.homepage h1 {
+    color: #0e1012;
+}
+
+.my-input {
+    width: 200px;
+}
