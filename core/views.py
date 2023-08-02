@@ -6,7 +6,13 @@ from .forms import VacancyForm, CompanyForm
 from .filters import VacancyFilter
 
 def homepage(request):
-    return render(request=request, template_name="index.html")
+    if request.method == "POST":
+        return HttpResponse("Метод не разрешён, только GET", status=405)
+    contex = {}
+    contex["vacancies"] = Vacancy.objects.all()[:5]
+    contex["companies"] = Company.objects.all()[:3]
+    return render(request=request, template_name="index.html", context=contex)
+
 
 def about(request):
     return HttpResponse('Найдите работу или работника мечты!')

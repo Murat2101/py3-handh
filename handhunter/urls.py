@@ -30,7 +30,7 @@ urlpatterns = [
     path('about/', about),
     path('contacts/', contact_view),
     path('vacancies/', vacancy_list),
-    path('vacancy/<int:id>/', vac_description),
+    path('vacancy/<int:id>/', vacancy_detail, name='vacancy-info'),
     path('vacancy-edit/<int:id>/', vacancy_edit, name='vacancy-edit'),
     path('vacancy_list/', vacancy_list),
     path('add-vacancy/', vacancy_add),
@@ -49,8 +49,10 @@ urlpatterns = [
     path('sign-out/', sign_out, name='sign-out'),
     path('registration/', reg_view, name='reg'),
     path('recruit/', include('recruit.urls')),
+    path('news/', include('news.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # ...:8000/static/my_style.css  #..../handhanter/core/static/my_style.css
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 

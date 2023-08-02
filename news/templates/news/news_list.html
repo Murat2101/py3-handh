@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1>Новости</h1>
+    {% for n in news %}
+        <div>
+            <a href="{% url 'update' n.pk %}">
+                {{ n.user.username }}
+            </a>
+        </div>
+
+
+
+
+
+
+{% endblock content %}

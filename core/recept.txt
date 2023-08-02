@@ -30,7 +30,6 @@ git push -u origin main
 
 # заливка изменений
 git add .
-git commit -m "some text"
 git push
 
 # клонирование
