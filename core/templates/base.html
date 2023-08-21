@@ -73,6 +73,16 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'add-resume' %}">Добавить Резюме</a>
             </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Новости</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="/news/news">Список Новостей</a></li>
+                <li><a class="dropdown-item" href="/news/create">Добавить Новость</a> </li>
+                <li><a class="dropdown-item" href="/news/update/<int:pk>">Обновить Новость</a> </li>
+                <li><a class="dropdown-item" href="/news/detail/<int:pk>"></a> </li>
+                <li><a class="dropdown-item" href="/news/detail/<int:pk>"></a> </li>
+              </ul>
+            </li>
             <li class="nav-item">
               <a class="nav-link" href="{% url 'sign-out' %}">Выйти</a>
             </li>

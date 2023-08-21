@@ -14,6 +14,10 @@ class ArticleNew(models.Model):
     views_count = models.IntegerField(default=True)
     likes_users = models.ManyToManyField(User, blank=True, related_name='like')
 
+    def increase_views_count(self):
+        self.views_count += 1
+        self.save()
+
 
 
 # Create your models here.
